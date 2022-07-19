@@ -46,26 +46,33 @@ kt_register_toolchains()  # to use the default toolchain, otherwise see toolchai
 # ktor
 # https://ktor.io/
 IO_KTOR_ARTIFACTS = [
-    "io.ktor:ktor-server:%s" % KTOR_VERSION,
     "io.ktor:ktor-server-core:%s" % KTOR_VERSION,
-    "io.ktor:ktor-server-netty:%s" % KTOR_VERSION,
-    "io.ktor:ktor-server-content-negotiation:%s" % KTOR_VERSION,
-    "io.ktor:ktor-serialization-kotlinx-json:%s" % KTOR_VERSION,
+    "io.ktor:ktor-server-core-jvm:%s" % KTOR_VERSION,
+    #    "io.ktor:ktor-server:%s" % KTOR_VERSION,
+    #    "io.ktor:ktor-server-netty:%s" % KTOR_VERSION,
+    #    "io.ktor:ktor-server-content-negotiation:%s" % KTOR_VERSION,
+    #    "io.ktor:ktor-serialization-kotlinx-json:%s" % KTOR_VERSION,
 ]
 
 LOGGER_ARTIFACTS = [
     # https://logback.qos.ch/
     # https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
-    "ch.qos.logback:logback-classic:%s" % LOGBACK_VERSION,
+    #    "ch.qos.logback:logback-classic:%s" % LOGBACK_VERSION,
+]
+
+GUAVA_ARTIFACTS = [
+    "com.google.guava:guava:31.1-jre",
 ]
 
 maven_install(
     artifacts = [] +
                 IO_KTOR_ARTIFACTS +
-                LOGGER_ARTIFACTS,
+                LOGGER_ARTIFACTS +
+                GUAVA_ARTIFACTS,
     fetch_sources = True,
     generate_compat_repositories = True,
     repositories = [
+        "https://repo1.maven.org/maven2/",
         "https://repo.maven.apache.org/maven2/",
     ],
 )
