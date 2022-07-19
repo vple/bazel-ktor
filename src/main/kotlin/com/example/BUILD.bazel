@@ -1,0 +1,19 @@
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
+
+kt_jvm_library(
+    name = "example",
+    srcs = glob(["*.kt"]),
+    deps = [
+        "@maven//:io_ktor_ktor_server",
+        "@maven//:io_ktor_ktor_server_core",
+    ],
+)
+
+kt_jvm_binary(
+    name = "example_binary",
+    main_class = "com.example.ApplicationKt",
+
+    runtime_deps = [
+        ":example",
+    ],
+)
